@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license        = package['license']
   s.author         = package['author']
   s.homepage       = package['homepage']
-  s.source         = { :git => 'https://github.com/sampertelus/react-native-camera', :tag => s.version }
+  s.source         = { :git => 'https://github.com/sampertelus/react-native-camera', :tag => "v#{s.version}" }
 
   s.requires_arc   = true
   s.platform       = :ios, '9.0'
@@ -23,29 +23,27 @@ Pod::Spec.new do |s|
     ss.source_files = "ios/RN/**/*.{h,m}"
   end
 
-  s.subspec "FaceDetector" do |ss|
-    ss.dependency 'react-native-camera/RN'
-    ss.dependency 'react-native-camera/RCT'
-
-    ss.dependency 'GoogleMobileVision/Detector', '~> 1.1.0'
-    ss.dependency 'GoogleMobileVision/MVDataOutput', '~> 1.1.0'
-    ss.dependency 'GoogleMobileVision/FaceDetector', '~> 1.1.0'
-
-    ss.source_files = "ios/FaceDetector/**/*.{h,m}"
-    s.static_framework = true
-  end
-
   s.subspec "TextDetector" do |ss|
     ss.dependency 'react-native-camera/RN'
     ss.dependency 'react-native-camera/RCT'
-    ss.dependency 'GoogleMobileVision/TextDetector'
+    ss.dependency 'GoogleMLKit/TextRecognition'
+  end
 
-    ss.source_files = "ios/TextDetector/**/*.{h,m}"
+  s.subspec "FaceDetectorMLKit" do |ss|
+    ss.dependency 'react-native-camera/RN'
+    ss.dependency 'react-native-camera/RCT'
+    ss.dependency 'GoogleMLKit/FaceDetection'
+  end
+  
+  s.subspec "BarcodeDetectorMLKit" do |ss|
+    ss.dependency 'react-native-camera/RN'
+    ss.dependency 'react-native-camera/RCT'
+    ss.dependency 'GoogleMLKit/BarcodeScanning'
   end
 
   s.default_subspecs = "RN", "RCT"
 
   s.preserve_paths = 'LICENSE', 'README.md', 'package.json', 'index.js'
 
-  s.dependency 'React'
+  s.dependency 'React-Core'
 end

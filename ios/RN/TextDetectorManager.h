@@ -1,5 +1,7 @@
 #if __has_include(<MLKitTextRecognition/MLKitTextRecognition.h>)
   @import MLKitTextRecognition;
+  @import MLKitTextRecognitionCommon;
+
 //add all imports
 #endif
   @interface TextDetectorManager : NSObject
